@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- <link href="css/style.css" rel="stylesheet"> -->
+         <!-- Bootstrap CSS -->
+         {% load static %}     
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    </head>
+    <body>
+        <div>
+            {% if messages %}
+                {% for message in messages %}
+                <h4>{{message}}</h4>
+                {% endfor %}
+            {% endif %}
+        </div>
+
+        <div>
+            <h1>Registration</h1><br>
+            <form action='/register' method='POST'>
+                {% csrf_token %}
+                <div>
+                    <div> First Name : <input type = "text" name="first_name" id="first_name" ></div><br>
+                    <div> Alias :  <input type = "text" name="alias" id="alias" ></div><br>
+                    <div> Email :      <input type = "text" name="email" id="email" ></div><br>
+                    <div> Password :   <input type = "password" name="password" id="password" ></div><br>
+                    <div> Confirm Pw: <input type = "password" name="confirm_password" id="confirm_password" ></div><br>
+                    <div> Date of Birth:     <input type='date'  id='date' name='date'></div><br>
+                    <!-- <button>Register</button> -->
+                    
+                </div>
+                <br>
+                
+                <input type = "submit" value ="register">
+            </form>    
+        </div>
+        <br>
+        <br>
+
+
+        <div>
+            <h1>Login</h1>
+            <form action='/login' method='POST'>
+                {% csrf_token %}
+                <div>
+                    Email :<input type = "text" name="email" id="email" >
+                    Password :<input type = "password" name="password" id="password" >
+                    <!-- <button>Login</button> -->
+
+                </div>
+                <input type = "submit" value ="login">
+
+            </form>
+
+        </div>
+    </body>
+</html>

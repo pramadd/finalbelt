@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- <link href="css/style.css" rel="stylesheet"> -->
+        {% load static %}     
+        <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous"> -->
+        <style>
+            table {
+                font-family: arial, sans-serif;
+                border-collapse: collapse;
+                width: 100%;
+            }
+            
+            td, th {
+                border: 1px solid #dddddd;
+                text-align: left;
+                padding: 8px;
+            }
+            
+            tr:nth-child(even) {
+                background-color: #dddddd;
+            }
+        </style>    
+    </head>
+    <body>
+        <div>
+            <p class="text-success">Success! Welcome {{user.first_name}}{{user.last_name}}</p>
+            <!-- <h1>Success! Welcome {{request.session.fname}} </h1> -->
+            <form action='/' method='POST'>
+                {% csrf_token %}
+                <button>logout</button>
+            </form>
+        </div>
+
+        <div>
+            <p>YOUR TRIP SCHEDULES :</p>
+            <table>
+                <tr>
+                    <th>Destination</th>
+                    <th>Travel Start Date</th>
+                    <th>Travel ENd date</th>
+                    <th>Plan</th>
+                </tr>
+                    {%for travel in your_trip%}
+                <tr>
+                    <td><a href = "destination/{{travel.id}}">{{travel.destination}}</a></td>
+                    <td>{{travel.datefrom}}</td>
+                    <td>{{travel.dateto}}</td>
+                    <td>{{travel.description}}</td>
+                </tr>
+                    {%endfor%}
+            </table>
+        </div>
+
+
+        <div>
+            <p>OTHER's USERS TRAVEL PLANS</p>
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Destination</th>
+                    <th>Travel start date</th>
+                    <th>Travel End date</th>
+                    <th>Do you want to join?</th>
+
+                </tr>
+                {%for i in other_user%}
+                <tr>
+                    <td>{{i.user.first_name}}</td>
+                    <td><a href = "destination/{{i.id}}">{{i.destination}}</a></td>
+                    <td>{{i.datefrom}}</td>
+                    <td>{{i.dateto}}</td>
+                    <td><a href = "join/{{i.id}}">JOIN</a></td>
+                </tr>
+                {%endfor%}
+            </table>
+        </div>
+
+
+        <a href = "/addplan">Add Travel Plan</a>
+        
+
+    </body>
+</html>

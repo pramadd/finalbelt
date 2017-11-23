@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/style.css" rel="stylesheet">
+    </head>
+    <body>
+        <div>
+                {% if messages %}
+                    {% for message in messages %}
+                    <h4>{{message}}</h4>
+                    {% endfor %}
+                {% endif %}
+         </div>
+
+        <div>
+            <form action='/travels' method='POST'>
+                {% csrf_token %}
+                <button>Home</button>
+            </form>
+            <form action='/' method='POST'>
+                {% csrf_token %}
+                <button>logout</button>
+            </form>
+        </div>
+        <br>
+
+        <div>
+            <h1>Add a trip</h1>
+        </div>
+        <br>
+
+       <div>
+            <form action = '/add' method = 'POST'>
+                {% csrf_token %}
+                <div>
+                    <div> Destination:<input type = "text" name = "destination" id = "destination"></div><br>
+                    <div> Description:<input type = "text" name = "description" id = ""></div><br>
+                    <div> Travel Date From:<input type = "date" name = "datefrom" id = "datefrom"></div><br>
+                    <div> Travel Date To :<input type = "date" name = "dateto" id = "dateto"></div><br>
+                </div>    
+
+
+                <input type = "submit" value ="ADD">
+            </form>
+
+       </div>
+
+    </body>
+</html>

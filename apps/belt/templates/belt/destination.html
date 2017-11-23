@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/style.css" rel="stylesheet">
+    </head>
+    <body>
+
+        <div>
+            <form action='/travels' method='POST'>
+                {% csrf_token %}
+                <button>Home</button>
+            </form>
+            <form action='/' method='POST'>
+                {% csrf_token %}
+                <button>logout</button>
+            </form>
+        </div>
+
+
+        <div>
+            <h3>{{travel.destination}}</h3>
+            <h5>planned by :{{travel.user.first_name}}</h5>
+            <h5>description :{{travel.description}}</h5>
+            <h5>Travel Date from :{{travel.datefrom}}</h5>
+            <h5>Travel Date to :{{travel.dateto}}</h5>
+
+        </div>
+
+        <div>
+            <h3>other users joining the trip</h3>
+            
+        </div>
+
+        {%for x in users%}
+        <div>
+            {{x.first_name}}
+            
+        </div>
+        {%endfor%}
+    </body>
+</html>
